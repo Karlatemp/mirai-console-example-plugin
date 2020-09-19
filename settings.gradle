@@ -3,7 +3,7 @@ pluginManagement {
         mavenLocal()
         gradlePluginPortal()
         jcenter()
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
     }
 }
 rootProject.name = "mirai-console-example-plugin"

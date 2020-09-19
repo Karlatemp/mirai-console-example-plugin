@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'org.jetbrains.kotlin.kapt' version '1.4.0'
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += ['-Xopt-in=kotlin.RequiresOptIn',
+                             '-Xjvm-default=enable']
+    }
+}
+
+
+dependencies {
+    def core = "1.2.3"
+    def console = "1.0-M4"
+
+    compileOnly("net.mamoe:mirai-core:$core")
+    compileOnly("net.mamoe:mirai-console:$console")
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    def autoService = '1.0-rc7'
+    kapt "com.google.auto.service:auto-service:$autoService"
+    compileOnly "com.google.auto.service:auto-service-annotations:$autoService"
+
+    testImplementation("net.mamoe:mirai-core:$core")
+    testImplementation("net.mamoe:mirai-console:$console")
+    testImplementation("net.mamoe:mirai-console-pure:$console")
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
